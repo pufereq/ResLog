@@ -38,7 +38,7 @@ def os_check():
         input('Press Enter to exit...')
         exit()
     start_test()
-    
+    # Jordan.mp4
 
 def start_test():
     cpu_list = []
