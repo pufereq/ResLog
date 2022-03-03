@@ -48,7 +48,7 @@ def start_test():
     ram_percent_list = []
     iterations = 0
     try:
-        print('ResLog\nTo stop the test press Ctrl+C.')
+        print('ResLog\nTo end monitoring your system, press Ctrl-C.')
         while True:
             time.sleep(0.5)
             iterations += 1
@@ -74,9 +74,13 @@ def start_test():
         time.sleep(0.5)
         print('Complete')
         os.system(CLEAR)
-        tod = time.strftime('%d.%m.%Y_%H:%M.%S')
-        log = open('ResLog_{}.txt'.format(tod), 'w')
-        log.write('{}\nRESULTS:\n\n\nPlatform details: {}; {}\n\nIterations ran: {}\n\nAverage CPU Usage: {}\nAverage RAM Usage (MB): {}\nAverage RAM Usage (%): {}'.format(time.strftime('%d/%m/%Y %H:%M.%S'),OS_DETAILS[0], OS_DETAILS[1], iterations, cpu_avg, ram_usage_avg, ram_percent_avg))
-        print('{}\nRESULTS:\n\n\nPlatform details: {}; {}\n\nIterations ran: {}\n\nAverage CPU Usage: {}\nAverage RAM Usage (MB): {}\nAverage RAM Usage (%): {}'.format(tod, OS_DETAILS[0], OS_DETAILS[1], iterations, cpu_avg, ram_usage_avg, ram_percent_avg)) 
+        time_date = time.strftime('%d.%m.%Y_%H:%M.%S')
+        
+        print('{}\nRESULTS:\n\n\nPlatform details: {}; {}\n\nIterations ran: {}\n\nAverage CPU Usage: {}\nAverage RAM Usage (MB): {}\nAverage RAM Usage (%): {}'.format(time_date, OS_DETAILS[0], OS_DETAILS[1], iterations, cpu_avg, ram_usage_avg, ram_percent_avg)) 
+        save = input("\nSave output to file? (Y/n) ")
+        if save.lower() == 'y':
+            log = open('ResLog_{}.txt'.format(time_date), 'w')
+            log.write('{}\nRESULTS:\n\n\nPlatform details: {}; {}\n\nIterations ran: {}\n\nAverage CPU Usage: {}\nAverage RAM Usage (MB): {}\nAverage RAM Usage (%): {}'.format(time.strftime('%d/%m/%Y %H:%M.%S'),OS_DETAILS[0], OS_DETAILS[1], iterations, cpu_avg, ram_usage_avg, ram_percent_avg))
 
-os_check()
+if __name__ == '__main__':
+    os_check()
